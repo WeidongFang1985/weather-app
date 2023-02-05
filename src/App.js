@@ -1,9 +1,10 @@
 import './App.css';
+import Weather from "./components/Weather/Weather";
 
 function App() {
   return (
     <div className="App">
-      <h1>hello</h1>
+        <Weather />
     </div>
   );
 }
