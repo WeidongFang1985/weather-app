@@ -8,8 +8,6 @@ import Form from 'react-bootstrap/Form';
 const SearchCity = (props) => {
     const [city, setCity] = useState('');
 
-
-
     const onCityInputChangeHandle = (event) => {
         const value = event.target.value;
         setCity(value);
@@ -22,9 +20,19 @@ const SearchCity = (props) => {
             return;
         }
 
-        const weatherData = await fetchWeatherByCity(city);
+        try {
+            props.setLoading(true);
+            const weatherData = await fetchWeatherByCity(city);
+            props.getWeather(weatherData);
+        } catch (e) {
+            console.log('Failed to fetch city weather due to error', e);
+        } finally {
+            props.setLoading(false);
+        }
 
-        props.getWeather(weatherData);
+
+
+
 
 
 
